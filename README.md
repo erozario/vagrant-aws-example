@@ -1,15 +1,15 @@
-Vagrant AWS + Ansible Example
+Vagrant AWS Plugin and Ansible
 ===========
 
-Just an example of how to use vagrant-aws + ansible
+Just an example of how to use vagrant-aws and ansible
 
 
 Requirements
 ------------
 
-  - Vagrant (https://www.packer.io/intro/getting-started/install.html)
-  - Ansible (http://docs.ansible.com/ansible/intro_installation.html)
-  - Ansible roles used in playbook.yml previously installed
+  - [Vagrant](https://www.packer.io/intro/getting-started/install.html)
+  - [Ansible](http://docs.ansible.com/ansible/intro_installation.html)
+  - [Ansible Roles](https://galaxy.ansible.com/)
   
 Installation
 ------------
@@ -89,4 +89,4 @@ MIT
 
 Author Information
 ------------------
-https://www.linkedin.com/in/eduardo-rozario/
+[Linkedin](https://www.linkedin.com/in/eduardo-rozario/)
