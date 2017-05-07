@@ -1,0 +1,10 @@
+- hosts: all
+  become: yes
+  roles:
+    - erozario.grafana 
+    - geerlingguy.nginx
+  vars:
+    grafana_admin_user: admin
+    grafana_admin_password: grafana
+    grafana_plugins_install: [alexanderzobnin-zabbix-app]
+
