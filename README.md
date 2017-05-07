@@ -17,6 +17,20 @@ Installation
     $ git clone https://github.com/erozario/vagrant-aws-example.git
     $ vagrant plugin install vagrant-aws
     $ vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box
+    
+Configure AWS credentials
+--------------
+
+Create a file called ‘aws-credentials’ with following content:
+
+    export AWS_KEY='your-key'
+    export AWS_SECRET='your-secret'
+    export AWS_KEYNAME='your-keyname'
+    export AWS_KEYPATH='your-keypath'
+    
+Write credentials into Environment variables
+    
+    $ source aws-credentials
 
 Example Vagrantfile
 --------------
@@ -25,10 +39,9 @@ Example Vagrantfile
       config.vm.box = "aws-dummy"
 
       config.vm.provider :aws do |aws, override|
-        aws.access_key_id = "XXXXXXXXXXXXXXXXXXXX"
-        aws.secret_access_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-        aws.keypair_name = "vagrant"
-
+        aws.access_key_id = ENV['AWS_KEY']
+        aws.secret_access_key = ENV['AWS_SECRET']
+        aws.keypair_name = ENV['AWS_KEYNAME']
         aws.ami = "ami-ae7bfdb8"
         aws.region = "us-east-1"
         aws.availability_zone = "us-east-1e"
@@ -37,13 +50,12 @@ Example Vagrantfile
         aws.subnet_id = "subnet-123abcd12"
         aws.associate_public_ip = true
 
-
         aws.tags = {
           'Name'    => 'grafana'
         }
 
         override.ssh.username = "centos"
-        override.ssh.private_key_path = "./vagrant.pem"
+        override.ssh.private_key_path = ENV['AWS_KEYPATH']
       end
 
       config.vm.provision :ansible do |ansible|
@@ -60,7 +72,6 @@ Example Playbook
       become: yes
       roles:
         - erozario.grafana 
-        - geerlingguy.nginx
       vars:
         grafana_admin_user: admin
         grafana_admin_password: grafana
@@ -69,7 +80,6 @@ Example Playbook
 Execute
 ----------------
  
-    
     $ vagrant up --provider aws 
 
 License
