@@ -36,7 +36,7 @@ Example Vagrantfile
 --------------
     Vagrant.configure("2") do |config|
 
-      config.vm.box = "aws-dummy"
+      config.vm.box = "dummy"
 
       config.vm.provider :aws do |aws, override|
         aws.access_key_id = ENV['AWS_KEY']
